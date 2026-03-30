@@ -1,0 +1,43 @@
+import { updateHealth } from "./ui.js";
+import { triggerQuestion } from "./quiz.js";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js";
+import { createPlayer, updatePlayer } from "./player.js";
+import { createCamera, updateCamera } from "./camera.js";
+import { createWorld } from "./world.js";
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x87ceeb);
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// luz
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(10, 20, 10);
+scene.add(light);
+
+// mundo
+createWorld(scene);
+
+// player
+const player = createPlayer(scene);
+
+// camera
+const camera = createCamera();
+
+// controles
+const keys = {};
+document.addEventListener("keydown", e => keys[e.key.toLowerCase()] = true);
+document.addEventListener("keyup", e => keys[e.key.toLowerCase()] = false);
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    updatePlayer(player, keys);
+    updateCamera(camera, player);
+
+    renderer.render(scene, camera);
+}
+
+animate(updateHealth(););
