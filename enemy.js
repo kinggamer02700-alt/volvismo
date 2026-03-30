@@ -22,8 +22,6 @@ export function createEnemies(scene, count = 5) {
         scene.add(enemy);
         enemies.push(enemy);
     }
-
-    return enemies;
 }
 
 export function updateEnemies(player) {
