@@ -41,3 +41,6 @@ function animate() {
 }
 
 animate(updateHealth(););
+setInterval(() => {
+    triggerQuestion();
+}, 10000); // a cada 10 segundos
