@@ -1,57 +1,94 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Jogo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volvismo</title>
+  <style>
+    body { margin: 0; overflow: hidden; font-family: Arial, sans-serif; }
+    
+    /* HUD superior */
+    #hud {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 100;
+      color: white;
+      text-shadow: 0 0 5px black;
+    }
+    #score { font-size: 24px; font-weight: bold; }
+    
+    #health-container {
+      width: 300px;
+      height: 30px;
+      background: #333;
+      border: 3px solid #fff;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    #health {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#0f0, #0a0);
+      transition: width 0.3s;
+    }
 
-<style>
-body { margin: 0; overflow: hidden; }
-
-#ui {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: white;
-  font-family: Arial;
-}
-
-#healthBar {
-  width: 200px;
-  height: 20px;
-  background: red;
-}
-
-#health {
-  width: 100%;
-  height: 100%;
-  background: green;
-}
-
-#quizBox {
-  margin-top: 20px;
-  background: rgba(0,0,0,0.7);
-  padding: 10px;
-}
-</style>
+    /* Quiz overlay */
+    #quizBox {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      z-index: 200;
+      color: white;
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+    }
+    #question { font-size: 22px; margin-bottom: 20px; }
+    #answer { 
+      width: 100%; 
+      padding: 15px; 
+      font-size: 18px; 
+      border-radius: 10px; 
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 12px 30px;
+      font-size: 18px;
+      background: #0f0;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover { background: #0a0; }
+  </style>
 </head>
-
 <body>
-
-<div id="ui">
-  <div id="healthBar">
-    <div id="health"></div>
+  <!-- HUD -->
+  <div id="hud">
+    <div id="score">Pontuação: 0</div>
+    <div id="health-container">
+      <div id="health"></div>
+    </div>
   </div>
 
-  <p id="score">Pontuação: 0</p>
-
-  <div id="quizBox" style="display:none;">
+  <!-- Quiz -->
+  <div id="quizBox">
     <p id="question"></p>
-    <input type="text" id="answer" placeholder="Digite sua resposta"/>
+    <input type="text" id="answer" placeholder="Digite sua resposta...">
     <button onclick="submitAnswer()">Responder</button>
   </div>
-</div>
 
-<script type="module" src="./main.js"></script>
-
+  <script type="module" src="main.js"></script>
 </body>
 </html>
