@@ -44,3 +44,11 @@ animate(updateHealth(););
 setInterval(() => {
     triggerQuestion();
 }, 10000); // a cada 10 segundos
+import { createEnemies, updateEnemies, attackEnemies } from "./enemy.js";
+const enemies = createEnemies(scene, 5);
+updateEnemies(player);
+document.addEventListener("keydown", e => {
+    if (e.key === "f") {
+        attackEnemies(player);
+    }
+});
