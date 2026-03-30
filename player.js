@@ -1,21 +1,24 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js";
-
 export function createPlayer(scene) {
-    const geometry = new THREE.BoxGeometry(1, 2, 1);
-    const material = new THREE.MeshStandardMaterial({ color: 0x00ffcc });
-    const player = new THREE.Mesh(geometry, material);
+    const group = new THREE.Group();
 
-    player.position.y = 1;
-    scene.add(player);
+    const body = new THREE.Mesh(
+        new THREE.CapsuleGeometry(0.5, 1.5),
+        new THREE.MeshStandardMaterial({ color: 0x00aaff })
+    );
 
-    return player;
-}
+    const head = new THREE.Mesh(
+        new THREE.SphereGeometry(0.4),
+        new THREE.MeshStandardMaterial({ color: 0xffccaa })
+    );
 
-export function updatePlayer(player, keys) {
-    const speed = 0.1;
+    head.position.y = 1.5;
 
-    if (keys["w"]) player.position.z -= speed;
-    if (keys["s"]) player.position.z += speed;
-    if (keys["a"]) player.position.x -= speed;
-    if (keys["d"]) player.position.x += speed;
+    group.add(body);
+    group.add(head);
+
+    group.position.y = 1;
+
+    scene.add(group);
+
+    return group;
 }
