@@ -27,18 +27,14 @@ document.addEventListener("keydown", e => keys[e.key.toLowerCase()] = true);
 document.addEventListener("keyup", e => keys[e.key.toLowerCase()] = false);
 
 document.addEventListener("keydown", e => {
-    if (e.key.toLowerCase() === "f") {
-        attackEnemies(player);
-    }
+    if (e.key.toLowerCase() === "f") attackEnemies(player);
 });
 
 function animate() {
     requestAnimationFrame(animate);
-
     updatePlayer(player, keys);
     updateCamera(camera, player);
     updateEnemies(player); 
-
     renderer.render(scene, camera);
 }
 
