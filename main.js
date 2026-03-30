@@ -20,28 +20,29 @@ scene.add(light);
 createWorld(scene);
 const player = createPlayer(scene);
 const camera = createCamera();
-createEnemies(scene, 5); // Inimigos criados antes do loop
+createEnemies(scene, 5); 
 
 const keys = {};
 document.addEventListener("keydown", e => keys[e.key.toLowerCase()] = true);
 document.addEventListener("keyup", e => keys[e.key.toLowerCase()] = false);
 
-// Ataque no 'F'
 document.addEventListener("keydown", e => {
-    if (e.key.toLowerCase() === "f") attackEnemies(player);
+    if (e.key.toLowerCase() === "f") {
+        attackEnemies(player);
+    }
 });
 
 function animate() {
     requestAnimationFrame(animate);
-    
+
     updatePlayer(player, keys);
     updateCamera(camera, player);
-    updateEnemies(player); // Movimentação dos inimigos acontece aqui
-    
+    updateEnemies(player); 
+
     renderer.render(scene, camera);
 }
 
-animate(); // Chamada limpa
+animate(); 
 
 setInterval(() => {
     triggerQuestion();
