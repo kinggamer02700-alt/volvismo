@@ -26,9 +26,10 @@ export function createEnemies(scene, count = 5) {
     return enemies;
 }
 
-export function updateEnemies(const sound = document.getElementById("hitSound");
-if (sound) sound.play();) {
+export function updateEnemies(player) {
     enemies.forEach(enemy => {
+        if (!enemy.visible) return;
+
         const dx = player.position.x - enemy.position.x;
         const dz = player.position.z - enemy.position.z;
 
@@ -45,10 +46,12 @@ if (sound) sound.play();) {
 
 export function attackEnemies(player) {
     enemies.forEach(enemy => {
+        if (!enemy.visible) return;
+
         const dist = player.position.distanceTo(enemy.position);
 
         if (dist < 2) {
-            triggerQuestion(); // pergunta ao atacar
+            triggerQuestion();
             enemy.hp -= 25;
 
             if (enemy.hp <= 0) {
